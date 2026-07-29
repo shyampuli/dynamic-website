@@ -10,8 +10,13 @@ pipeline {
 
         stage('Push to Registry') {
             steps {
-                bat '"C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" tag my-dynamic-app shyamprasad2310/my-dynamic-app:latest'
-                bat '"C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push shyamprasad2310/my-dynamic-app:latest'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'shyamprasad2310', passwordVariable: 'Prasadpuli231@')]) {
+                    bat '''
+                        "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u %DOCKER_USER% -p %DOCKER_PASS%
+                        "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" tag my-dynamic-app shyamprasad2310/my-dynamic-app:latest
+                        "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push shyamprasad2310/my-dynamic-app:latest
+                    '''
+                }
             }
         }
     }
