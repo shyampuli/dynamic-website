@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat '''
-                        echo %DOCKER_PASS% | "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u %DOCKER_USER% --password-stdin
+                        "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u %DOCKER_USER% -p %DOCKER_PASS%
                         "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" tag my-dynamic-app shyamprasad2310/my-dynamic-app:latest
                         "C:\\Users\\pulis\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push shyamprasad2310/my-dynamic-app:latest
                     '''
