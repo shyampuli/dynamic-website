@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/YOURNAME/dynamic-website.git'
+                git 'https://github.com/shyampuli/dynamic-website.git'
             }
         }
         stage('Build Docker Image') {
@@ -13,8 +13,8 @@ pipeline {
         }
         stage('Push to Registry') {
             steps {
-                sh 'docker tag my-dynamic-app YOUR_DOCKERHUB/my-dynamic-app:latest'
-                sh 'docker push YOUR_DOCKERHUB/my-dynamic-app:latest'
+                sh 'docker tag my-dynamic-app shyamprasad2310/my-dynamic-app:latest'
+                sh 'docker push shyamprasad2310/my-dynamic-app:latest'
             }
         }
     }
